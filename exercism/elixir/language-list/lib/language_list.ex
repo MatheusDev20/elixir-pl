@@ -1,25 +1,56 @@
 defmodule LanguageList do
   def new() do
-    # Please implement the new/0 function
+    []
   end
 
   def add(list, language) do
-    # Please implement the add/2 function
+    # prepend using head-tail pattern
+    [language | list]
   end
 
   def remove(list) do
-    # Please implement the remove/1 function
+    [_ | tail] = list
+    tail
   end
 
   def first(list) do
-    # Please implement the first/1 function
+    [first | _] = list
+    first
   end
 
   def count(list) do
-    # Please implement the count/1 function
+    Kernel.length(list)
   end
 
-  def functional_list?(list) do
-    # Please implement the functional_list?/1 function
+  # Using cond
+
+  # def functional_list?(list) do
+  #   cond do
+  #     list === [] -> false
+  #     hd(list) === "Elixir" -> true
+  #     true -> functional_list2?(tl(list))
+  #   end
+  # end
+
+  # Pattern Matching in function clauses
+  def functional_list?([]), do: false
+  def functional_list?(["Elixir" | _tail]), do: true
+  def functional_list?([_head | tail]), do: functional_list?(tail)
+
+  def sum_list(list) do
+    cond do
+      list == [] -> 0
+      true -> hd(list) + sum_list(tl(list))
+    end
   end
 end
+
+list = ["Elixir", "Ruby", "Python"]
+list1 = ["Javascript", "Clojure", "Scheme", "OCAML"]
+
+# IO.inspect(LanguageList.remove(list))
+# IO.inspect(LanguageList.first(list))
+# IO.inspect((LanguageList.count(list)))
+
+IO.inspect(LanguageList.sum_list([1, 2, 3, 4, 5]))
+IO.inspect(LanguageList.functional_list?(list))
