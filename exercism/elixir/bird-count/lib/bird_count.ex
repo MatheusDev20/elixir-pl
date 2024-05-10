@@ -3,7 +3,7 @@ defmodule BirdCount do
   def today([]), do: nil
   def today([h | _]), do: h
 
-  def increment_day_count([]), do: 1
+  def increment_day_count([]), do: [1]
   def increment_day_count([h | t]), do: [h + 1 | t]
 
   def has_day_without_birds?([]), do: false
